@@ -13,7 +13,7 @@ for n in {1..50}; do curl -d "" "http://my-project-id.appspot.com/hello"; done
 # Memory usage
 Using the above loop of 50 iterations, here is an example of how the memory
 usage of a single instance keeps growing. It starts at 206.8MB and, after each
-set of 50 serial requests, grows from 200KB to 3MB.
+set of 50 serial requests, grows from around 100KB to 3MB each iteration.
 
 ```text
 206.8 => 207.1
