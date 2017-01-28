@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+set -ue
+
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+source "$here/install-gae"
+
+export TUFTE_MIN_LEVEL=6 # Off
+
+if [ -z ${gae_project_id+x} ];
+then
+  echo "No gae_project_id set in environment"
+  exit 1
+fi
+
+function deploy
+{
+  echo "Cleaning"
+  lein clean
+
+  echo "Building uberwar"
+  lein ring uberwar
+  war=$(ls -1t $here/target/uberjar/*.war | head)
+
+  if [ "x$war" == "x" ];
+  then
+    echo "Unable to build war"
+    return 1
+  fi
+
+  tmp=$(mktemp -d /tmp/XXXXXX)
+  echo "Exploding"
+  pushd "$tmp"
+    jar xf "$war"
+    sed "s/XXX/$gae_project_id/g" < "$here/appengine-web.xml" > WEB-INF/appengine-web.xml
+    sed "s/XXX/$gae_project_id/g" < "$here/web.xml" > WEB-INF/web.xml
+
+    echo "Uploading"
+    "$gae_sdk/bin/appcfg.sh" update .
+  popd
+
+  echo "Deployed!"
+}
+deploy
