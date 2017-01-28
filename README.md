@@ -1,16 +1,16 @@
-# To deploy
+## To deploy
 ```bash
 # With leiningen installed, on a Unix-like system
 export gae_project_id=my-project-id
 ./deploy
 ```
 
-# To query
+## To query
 ```bash
 for n in {1..50}; do curl -d "" "http://my-project-id.appspot.com/hello"; done
 ```
 
-# Memory usage
+## Memory usage
 Using the above loop of 50 iterations, here is an example of how the memory
 usage of a single instance keeps growing. It starts at 206.8MB and, after each
 set of 50 serial requests, grows from around 100KB to 3MB each iteration.
