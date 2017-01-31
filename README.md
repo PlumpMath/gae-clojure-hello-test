@@ -33,8 +33,8 @@ usage of a single instance keeps growing. It starts anywhere between 135MB and
 ```
 
 The starting memory usage is, just like with Clojure, very inconsistent, too.
-The first instances that came up after some concurrent requests (memory usage in
-MB):
+The memory usage, in MB, I've seen starting various instances either from a
+clean deploy or from starting serial or concurrent requests:
 
 ```text
 143.3
@@ -50,4 +50,6 @@ MB):
 182.8
 456.7
 188.5
+209.8
+200.4
 ```
