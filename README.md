@@ -2,6 +2,7 @@
 ```bash
 # With maven installed
 cd myapp
+# replace XXX in pom.xml with app id
 mvn appengine:update
 ```
 

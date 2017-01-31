@@ -9,7 +9,7 @@
     <artifactId>myapp</artifactId>
 
     <properties>
-        <app.id>lets-bet-staging</app.id>
+        <app.id>XXX</app.id>
         <app.version>1</app.version>
         <appengine.version>1.9.49</appengine.version>
         <gcloud.plugin.version>2.0.9.74.v20150814</gcloud.plugin.version>
